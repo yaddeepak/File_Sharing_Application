@@ -16,7 +16,8 @@ const emailForm = document.querySelector("#emailForm");
 
 const toast = document.querySelector(".toast");
 
-const baseURL = "https://file-shar-app.herokuapp.com";
+// const baseURL = "https://file-shar-app.herokuapp.com";
+const baseURL = "http://localhost:3000";
 const uploadURL = `${baseURL}/api/files`;
 const emailURL = `${baseURL}/api/files/send`;
 
@@ -169,8 +170,6 @@ emailForm.addEventListener("submit", (e) => {
     emailFrom: emailForm.elements["from-email"].value,
   };
 
-  console.log(formData);
-
   fetch(emailURL, {
     method: "POST",
     headers: {
@@ -192,8 +191,10 @@ let toastTimer;
 const showToast = (msg) => {
   clearTimeout(toastTimer);
   toast.innerText = msg;
+  toast.style.display='block';
   toast.classList.add("show");
   toastTimer = setTimeout(() => {
     toast.classList.remove("show");
+    toast.style.display='none';
   }, 2000);
 };
